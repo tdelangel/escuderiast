@@ -1,0 +1,175 @@
+html { 
+    /*background: url(../images/bg_escuderia.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
+    background-color: #F1F1F1;
+}    
+body {
+    background: none; /*#595959;*/
+    /*margin: 10px 10px 0 10px;*/
+}
+
+
+/*  CSS GENERALES */
+.sin-border {
+    border: 0px;
+}
+.sin-sombra {
+    box-shadow: 0 0px 0px #FFF;
+    -webkit-box-shadow: 0 0px 0px #FFF;
+}
+.sin-padding {
+    padding: 0px;
+}
+.margin-div {
+    margin: 5px 0;
+}
+.txt-danger {
+    color: #B92C28;
+}
+.txt-primary {
+    color: #238DC1;
+}
+.txt-naranja {
+    color: #FF8B4E;
+}
+.bg-naranja {
+    background-color: #FF8B4E;
+}
+.txt-right {
+    text-align: right;
+}
+.txt-center {
+    text-align: center;
+}
+.contenido {
+    background: #FFF;
+    border: 1px solid #C4C4C4;
+    padding: 12px;
+    margin-top: 10px;    
+}
+.input-group {
+    margin-bottom: 10px;
+}
+.btn-jumbo {
+    height: 70px;
+    line-height: 60px;
+    width: 100%;
+}
+.glyphicon img {
+    width: 15px;
+}
+.verde {
+    color: #4CC31D;
+}
+.w100 {
+    width: 100%;
+}
+/*  CSS DIALOGO */
+.bootstrap-dialog .bootstrap-dialog-message {
+    padding: 10px 0px;
+}
+
+/*  CSS NAVBAR */
+.navbar {
+    margin-bottom: 0px;
+    background: #238DC1;
+}
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand a {
+    width: 60px;
+    height: 70px;
+}
+.navbar-brand > img {
+    width: 60px;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+.navbar-default .navbar-nav > li.active > a, .navbar-default .navbar-nav > li.active > a:hover {
+    color: #FFF;
+    background: #0170A8 !important;
+    border-bottom: 3px solid #FF8B4E;
+    max-height: 70px;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: #FFF;
+    border-bottom: 3px solid #FF8B4E;
+    max-height: 70px;
+}
+.container-fluid {
+    background-color: #238DC1;
+    border-color: #C4C4C4;
+}
+.navbar-default .navbar-nav > li > a {
+    line-height: 40px;
+}
+.navbar-toggle {
+    margin: 18px 15px !important;
+    background: #FFF;
+}
+.navbar-collapse {
+    border: 0px;
+    box-shadow: none;
+}
+
+/* CSS INICIO -  index.html */
+.btn-inicio, .btn-inicio:hover, .btn-inicio:active, .btn-inicio:focus, .btn-inicio:active:hover  {
+    color: #FFF;
+    background: #000;
+}
+
+/* CSS INICIO - index_5.html */
+ul.lista {
+    padding: 0px;
+    margin: 15px 0px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+ul.lista li {
+    list-style-type: none;
+    margin-left: 10px;
+}
+/* TABLE */
+table {
+    border-spacing: 3px;
+    border-collapse: initial;
+}
+.table > thead > tr > th {
+    border-bottom-color: #FF8B4E;
+}
+.table > tbody > tr > td {
+    border-top: 0px;
+    border-bottom: 1px solid #ddd;
+}
+td.icon {
+    width: 40px;
+    text-align: center;
+}
+td.success, td.warning, td.danger {
+    text-align: center;
+}
+/*tr:last-child {
+    border-bottom: 1px solid #DDD;
+}*/
+tr.sin-border td, td.sin-border {
+    border: 0px !important;
+}
+tr.add_btn_row , tr.add_btn_row td {
+    border-bottom: 0px;
+}
+tr.add_btn_row p {
+    margin: 0px 0px 10px 0px;
+}
+
+@media only screen and (max-width: 450px) {
+    th.hide-sm, td.hide-sm {
+        display:none !important;
+    }
+}

@@ -1,0 +1,582 @@
+{{#view 'formularios.new'}}
+<script languaje="JavaScript">
+
+var rv = -1; // Return value assumes failure.
+
+if (navigator.appName == 'Microsoft Internet Explorer'){
+
+ var ua = navigator.userAgent,
+ re  = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
+
+ if (re.exec(ua) !== null){
+   rv = parseFloat( RegExp.$1 );
+ }
+}
+else if(navigator.appName == "Netscape"){                       
+       /// in IE 11 the navigator.appVersion says 'trident'
+       /// in Edge the navigator.appVersion does not say trident
+       if(navigator.appVersion.indexOf('Trident') === -1) rv = 12;
+       else rv = 11;
+     } 
+
+     var explorer = rv;
+
+     $( function() {
+      $( "#from" ).datepicker({dateFormat: "yy-mm-dd"} );
+    } ); 
+     $( function() {
+      $( "#to" ).datepicker({dateFormat: "yy-mm-dd"} );
+    } );
+
+     function viewForm (){
+       $( "#dialog" ).dialog( "open" );
+     }
+
+     $( "#frmb-0-control-box" ).draggable();
+     $( function() {
+      var dialog;
+      dialog = $( "#dialog-form" ).dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $( this ).dialog( "close" );
+          }
+        }
+      });
+
+    });
+
+
+  </script>
+
+  <!-- panel información básica -->
+  <div class="panel panel-white">
+    <header class="panel-heading">
+
+    </header>
+
+    {{input id=admin type="hidden" value=admin class="form-control" }}
+    {{input type="hidden" value=model.status class="form-control" }}
+    {{input id='id_usuario' type="hidden" value=id_user class="form-control" }}
+    {{input id='id_estado' type="hidden" value=id_estado class="form-control" }}
+    {{input id='dependencia_id' type="hidden" value=dependencia_id class="form-control" }}
+    {{input id='editandoForm' type="hidden" value=editandoForm class="form-control" }}
+
+    <section class="panel-body">
+      <div class="container-fluid clearfix">
+        <div class="row line-border">
+          {{#if viewTipoForm}}
+          <div class="col-sm-12 ">
+            <div class="form-group">
+              <label class="label-title">Tipo de forma</label>
+              {{select-2  value=selectedTipoForm key='id' content=tipoForm  placeholder="Seleccionar tipo de forma" optionDescriptionPath='id' optionLabelPath="text" allowClear=true}}
+            </div>
+          </div>
+          {{/if}}
+          <div class="col-sm-6 ">
+            <div class="form-group">
+              <label class="label-title">Nombre</label>
+              {{text-validateregex valueBinding=nameform type="text" class="form-control value-add" placeholder="Nombre"}}
+            </div>
+          </div>
+          {{#if tramiteactive}}   <div class="col-sm-3 ">
+          <div class="form-group">
+            <label class="label-title">Trámite</label>
+
+            {{select-2  value=selectedTramite key='id' content=tramites  placeholder="Seleccionar Trámite" optionDescriptionPath='id' optionLabelPath="name" allowClear=true}}
+
+          </div>
+        </div>
+        {{/if}}
+        {{#if admin}}
+        {{#if isSelectedEstados}}
+        <div class="col-sm-6 ">
+          <div class="form-group">
+            <label class="label-title">Estado</label>
+            {{select-2 key='id' content=estados value=selectedEstado placeholder="Seleccionar Estado" optionDescriptionPath='id' optionLabelPath='estado' allowClear=true}}
+          </div>
+        </div>
+        {{else}}
+        <div  style="display: none;" class="col-sm-6 ">
+          <div class="form-group">
+            <label class="label-title">Estado</label>
+            {{select-2 key='id' content=estados value=selectedEstado placeholder="Seleccionar Estado" optionDescriptionPath='id' optionLabelPath='estado' allowClear=true}}
+          </div>
+        </div>
+        {{/if}}
+        <div class="col-sm-6 ">
+          <div class="form-group">
+            <label class="label-title">Tipo de pago</label>
+            {{select-2 key='id' content=pagos value=selectedTipoPago placeholder="Seleccionar Tipo Pago" optionDescriptionPath='id' optionLabelPath="tipo_pago" allowClear=true}}
+          </div>
+        </div>
+        {{else}}
+
+        {{#if isSelectedDependencias}}
+
+        {{#if tramiteactive}} 
+        <div class="col-sm-3 ">
+          <div class="form-group">
+            <label class="label-title">Captcha</label>
+            <br>
+            {{input type="checkbox" checked=captcha }}
+
+            <label class="label-title captcha">Añadir captcha</label>
+          </div>
+        </div>
+        <div  class="col-sm-6 dateie">
+
+          <div class="form-group">
+           <label for="from" class="label-title">Fecha de inicio</label> <br>
+           <div  class="col-sm-3">
+           <label for="from" class="label-title">Día</label>
+            {{select-2   key='id' content=dias value=initialDia  placeholder="Día" optionDescriptionPath='description' optionLabelPath="description" allowClear=true}}
+          </div>
+          <div  class="col-sm-3">
+           <label for="from" class="label-title">Mes</label>
+           {{select-2   key='id' content=meses value=initialMes  placeholder="Mes" optionDescriptionPath='description' optionLabelPath="description"  allowClear=true}}
+         </div>
+         <div  class="col-sm-3">
+          <label for="from" class="label-title">Año</label>
+           {{select-2   key='id' content=anios value=initialAnio  placeholder="Año" optionDescriptionPath='description' optionLabelPath="description"  allowClear=true}}
+         </div>
+       </div>
+     </div>
+     <div  class="col-sm-6 dateie">
+      <div class="form-group">
+       <label for="from" class="label-title">Fecha final</label><br>
+     
+       <div  class="col-sm-3">
+        <label for="from" class="label-title">Día</label> 
+        {{select-2   key='id' content=dias value=finalDia  placeholder="Día" optionDescriptionPath='description' optionLabelPath="description"   allowClear=true}}
+      </div> 
+      <div  class="col-sm-3">
+       <label for="from" class="label-title">Mes</label> 
+       {{select-2   key='id' content=meses value=finalMes  placeholder="Mes" optionDescriptionPath='description' optionLabelPath="description"  allowClear=true}}
+     </div>
+     <div  class="col-sm-3">
+      <label for="from" class="label-title">Año</label>
+       {{select-2   key='id' content=anios value=finalAnio  placeholder="Año" optionDescriptionPath='description' optionLabelPath="description"  allowClear=true}}
+
+     </div>
+   </div>
+ </div>
+ {{/if}}
+ <div class="col-sm-6 ">
+  <div class="form-group">
+    <label class="label-title">Dependencia</label>
+    {{select-2   key='id' content=dependencias value=selectedDependencia  placeholder="Seleccionar dependencia" optionDescriptionPath='id' optionLabelPath='name' allowClear=true}}
+
+  </div>
+</div>
+
+{{else}}
+<div style="display: none;" class="col-sm-6 ">
+  <div class="form-group">
+    <label class="label-title">dep</label>
+    {{select-2   key='id' content=dependencias value=selectedDependencia  placeholder="Seleccionar dependencia" optionDescriptionPath='id' optionLabelPath='name' allowClear=true}}
+
+  </div>
+</div>
+{{/if}}
+
+
+<div class="col-sm-3 date">
+  <div class="form-group">
+    <label for="from" class="label-title">Fecha de inicio</label>
+    {{input   id="from" name="from" valueBinding=startdate type="text" class="form-control value-add" placeholder="Fecha inicial que sera publicada la encuesta"}}
+  </div>
+</div> 
+
+
+<div class="col-sm-3 date ">
+  <div class="form-group">
+    <label  for="to" class="label-title">Fecha final</label>
+    {{input id="to" name="to" valueBinding=finaldate type="text" class="form-control value-add" placeholder="Fecha de expiración de la encuesta"}}
+  </div>
+</div>
+
+<div class="col-sm-6 " id="selectPlantilla">
+  <div class="form-group">
+    <label class="label-title">Plantillas</label>
+    {{select-2  key='id' content=plantillas  valueBinding=plantillasGet placeholder="Seleccionar tipo de plantilla" optionDescriptionPath='id' optionLabelPath="description" allowClear=true multiple=true}}
+  </div>
+</div>
+{{/if}}
+
+</div>
+<style type="text/css">
+
+  .line-border {
+    border-style: none none solid none;
+     border-width:2px; 
+     border-color:#E6E6E6;
+  }
+   .invisible {
+    display: none;
+  }
+  .col-md-7 {
+    width: 8.33333%;
+  }
+  .form-control {
+    width: 100%;
+    height: auto;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  }
+  .form-control, output {
+    font-size: 18px;
+    line-height: 1.428571429;
+    color: #555;
+    display: block;
+  }
+  .btn, .btn-danger.active, .btn-danger:active, .btn-default.active, .btn-default:active, .btn-info.active, .btn-info:active, .btn-primary.active, .btn-primary:active, .btn-warning.active, .btn-warning:active, .btn.active, .btn:active, .dropdown-menu>.disabled>a:focus, .dropdown-menu>.disabled>a:hover, .form-control, .navbar-toggle, .open>.btn-danger.dropdown-toggle, .open>.btn-default.dropdown-toggle, .open>.btn-info.dropdown-toggle, .open>.btn-primary.dropdown-toggle, .open>.btn-warning.dropdown-toggle {
+    background-image: none;
+  }
+  .prev-holder input[type=checkbox], .prev-holder input[type=radio] {
+    margin-right: 16px;
+    min-height: 10px;
+  }
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    min-height: 40px;
+  }
+  button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+
+
+  }
+  *, :after, :before {
+    box-sizing: border-box;
+  }
+  user agent stylesheet
+  input:not([type]), input[type="email" i], input[type="number" i], input[type="password" i], input[type="tel" i], input[type="url" i], input[type="text" i] {
+    padding: 1px 0px;
+    min-height: 40px;
+  }
+  user agent stylesheet
+  input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+  }
+  user agent stylesheet
+  input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+  }
+  user agent stylesheet
+  input, textarea, keygen, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+  }
+</style>
+<!-- end panel información básica -->
+
+<div class ="row  mensaje-right">
+  <div  class="col-sm-12 pull-right" >
+    {{#if controller.txEvent}}
+    <section class="clearfix">
+      <div class="alert alert-danger col-md-12" role="alert" style=" margin: 14px auto; display: table;">
+        <span class="fa fa-exclamation"></span>
+        <span class="sr-only">Error:</span>
+        <span style="padding-left:5px;">{{txMessage}}</span>
+      </div>
+    </section>
+    {{/if}}
+
+
+  </div>
+</div>
+
+{{#if isedit}}
+
+<textarea class="form-control" id="fb-template"></textarea>
+<div style="width: 700px;" id="dialog-message" title="Vista previa">
+  <form class="col-md-7" id="rendered-form"></form>
+</div>
+
+
+
+
+<script type="text/javascript">
+  /** editado */
+  jQuery(document).ready(function($) {
+    var fbTemplate = document.getElementById('fb-template');
+    var renderedContainer = document.getElementById('rendered-form');
+
+    $(fbTemplate).bind("change", function(e) {
+      $(fbTemplate).formRender({
+        container: renderedContainer
+      });
+    });
+  });
+
+</script>
+{{form-attributes onElementId="fb-template" onFormId=model.id}}
+
+<!--- update -->
+<div class="botones" style="margin-top: 50px; margin: 0 auto; background-color: #fff">
+  <div class="col-sm-2">
+    <button type="button" {{action 'cancelFormulario' model }} class="btn btn-action cancel pull-left">Cancelar </button>
+
+  </div>
+  
+ <div class="col-sm-3">
+ 
+   <button class="btn btn-action pull-left" id="preview_form">Vista previa</button>
+ </div>
+
+{{#if activaBottons}}
+<div class="col-sm-3">
+  <button {{action 'UpdateFormulario' 2 }} class="btn btn-action pull-left" id = "json" >Guardar
+  </button>
+</div>
+<div class="col-sm-3">
+  {{#if btnPublicar}}
+  <button {{action 'UpdateFormulario' 3 }} class="btn btn-action pull-left" id = "json" >Publicar</button>
+  {{/if}}
+</div>
+{{else}}
+<div class="col-sm-6">
+  <h3>La encuesta se encuentra publicada. No puede realizar cambios durante este proceso</h3>
+</div>
+{{/if}}
+</div>
+
+{{else}}
+
+{{#if isSaved}}
+<textarea  class="form-control" id="fb-template-new"></textarea>
+<div id="dialog-message" title="Download complete">
+  <form  class="col-md-7" id="rendered-form"></form>
+</div>
+
+
+<script type="text/javascript">
+  /** creado */
+  jQuery(document).ready(function($) {
+    var fbTemplate = document.getElementById('fb-template-new');
+    var renderedContainer = document.getElementById('rendered-form');
+
+    $(fbTemplate).bind("change", function(e) {
+      $(fbTemplate).formRender({
+        container: renderedContainer
+      });
+    });
+  });
+
+</script>
+{{form-atribute-template onElementId="fb-template-new" controller=this}}
+<div  class="botones"  style="margin-top: 10px; background-color: #fff; align:center; ">
+  <div class="col-sm-2">
+    <button type="button" {{action 'cancelyElim_Formulario'}} class="btn btn-action cancel pull-left">Cancelar</button>
+  </div>
+
+  <div class="col-sm-3">
+    <button class="btn btn-action pull-right" id="preview_form">Vista previa</button>
+  </div>
+
+{{#if activaBottons}}
+<div class="col-sm-3">
+  <button {{action 'saveFormularioAtt' 2 }} class="btn btn-action pull-right" id = "json" >Guardar
+  </button>
+</div>
+<div class="col-sm-3">
+
+  {{#if btnPublicar}}
+  <button {{action 'saveFormularioAtt' 3 }} class="btn btn-action pull-right" id = "json" >Publicar</button>
+  {{/if}}
+</div>
+{{else}}
+<div class="col-sm-6">
+  <h3>La encuesta se encuentra publicada. No puede realizar cambios durante este proceso</h3>
+</div>
+{{/if}}
+</div>
+{{else}}
+<div class="col-sm-12 ">
+  <button {{action 'createFormulario' 1 }} class="btn btn-action pull-right" {{bind-attr disabled=isActive}} >Crear formulario</button>
+  <button type="button" {{action 'cancelFormulario'}} class="btn btn-action cancel pull-left">Cancelar</button>
+</div>
+{{/if}}
+{{/if}}
+</div>
+<script>
+  $( function() {
+   $( "#preview_form" ).click(function() {
+
+    $( "#dialog-message" ).dialog({
+      modal: true,
+      height: 700,
+      width: 700,
+      buttons: {
+        Ok: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    });
+  });   
+
+ });
+</script>
+</section>
+</div>
+<style type="text/css">
+  .captcha {
+    position: absolute;
+    top: 44%;
+    padding-left: 10px;
+  }
+  .mensaje-right {
+    position: fixed;
+    top: 40px;
+    width: 50%;
+    height: auto;
+    right: 10px;
+    margin-top: 5px;
+    z-index: 301;
+    margin-right: 20px;
+
+    
+  }.botones {
+    position: fixed;
+    bottom:10px;
+    width: 65%;
+    height: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    opacity: 0.8;
+    z-index: 300;
+    
+  }
+  .form-actions {
+    margin-top: 50px;
+  }
+  form#rendered-form label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.428571429;
+    color: #545454;
+  }
+  form#rendered-form
+  {
+    -webkit-appearance: textfield;
+    background-color: white;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    border-color: initial
+    border: none;
+  }
+
+
+  hr.red {
+    margin: 10px 0 70px;
+    border-top-color: #dce0e0;
+    position: relative;
+  }
+  .red {
+    color: #d0021b;
+  }
+  hr.red:before {
+    content: " ";
+    width: 35px;
+
+    background-color: #d0021b;
+    display: block;
+    position: absolute;
+  }
+  .hide{
+    display: none;
+  }
+  .block{
+    display: block;
+  }
+</style>
+{{/view}}
+
+<script type="text/javascript">
+  if (explorer === 12){
+   /* no explorer*/
+   $( ".dateie" ).addClass( "hide");
+   $( ".date" ).addClass( "block");
+
+ }
+ else {
+  $(".date" ).addClass( "hide");
+  $(".dateie" ).addClass( "block");
+}
+$(document).ready(function() {
+
+ $( "#diai" ).change(function() {
+  $("#from").val($( "select#mesi" ).val() + "/"+ $( "select#diai" ).val()+ "/"+ $( "select#anioi" ).val());
+
+});   
+ $( "#mesi" ).change(function() {
+  $("#from").val($( "select#mesi" ).val() + "/"+ $( "select#diai" ).val()+ "/"+ $( "select#anioi" ).val());
+
+});    
+ $( "#anioi" ).change(function() {
+  $("#from").val($( "select#mesi" ).val() + "/"+ $( "select#diai" ).val()+ "/"+ $( "select#anioi" ).val());
+
+});
+ $( "#diaf" ).change(function() {
+  $("#to").val($( "select#mesf" ).val() + "/"+ $( "select#diaf" ).val()+ "/"+ $( "select#aniof" ).val());
+
+});   
+ $( "#mesf" ).change(function() {
+  $("#to").val($( "select#mesf" ).val() + "/"+ $( "select#diaf" ).val()+ "/"+ $( "select#aniof" ).val());
+
+});    
+ $( "#aniof" ).change(function() {
+  $("#to").val($( "select#mesf" ).val() + "/"+ $( "select#diaf" ).val()+ "/"+ $( "select#aniof" ).val());
+
+});
+
+});
+
+
+
+</script>

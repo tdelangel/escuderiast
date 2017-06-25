@@ -1,0 +1,377 @@
+{{#view 'formularios.show'}}
+
+
+<!-- panel información básica -->
+<div class="panel panel-white">
+  <header class="panel-heading">
+    Información básica del formulario 
+  </header> 
+
+  <section class="panel-body">
+    <div class="container-fluid clearfix">
+     
+
+      <!-- end panel información básica -->
+   
+      <div class ="row">
+       <div class="col-sm-12">
+       <div style="display:none" class="col-sm-7" id="prev">
+      
+       </div>
+
+         <br><br>
+       <div style="display:none" >
+             <div class="form-control" id="preview"></div>
+
+         <form id="rendered-form"></form>
+            
+         </div>
+         <div class="col-sm-12">
+         <div class="col-sm-7">
+         <br><br>
+         <button type="button" {{action 'regresarFormulario'}} class="btn btn-action cancel pull-left">Regresar</button>
+         </div>
+         </div>
+           
+       </div>
+     </div>
+ </div>
+
+  {{form-attributes onElementId="preview" onFormId=model.id}}
+
+
+</section>
+</div>
+<script type="text/javascript">
+
+
+jQuery(document).ready(function($) {
+setTimeout(function(){
+
+
+  var data =  $(".ui-sortable").html();
+// alert (data);
+ $("#prev").fadeIn( "slow" );
+ $("#prev").html(data);
+
+}, 600);
+});
+
+
+
+</script>
+
+{{/view}}
+<style>
+body {background-color:lightgrey;}
+h1   {color:blue;}
+p    {color:green;}
+.tooltip-element{
+  display: none
+}
+.form-elements
+   {
+    display:none;
+   }
+   .form-group {
+    margin-bottom: 15px;
+}
+@media (min-width: 992px)
+.col-md-7 {
+    width: 58.3333333333%;
+}
+.form-control {
+    width: 100%;
+    height: 39px;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.form-control, output {
+    font-size: 18px;
+    line-height: 1.428571429;
+    color: #555;
+    display: block;
+}
+.btn, .btn-danger.active, .btn-danger:active, .btn-default.active, .btn-default:active, .btn-info.active, .btn-info:active, .btn-primary.active, .btn-primary:active, .btn-warning.active, .btn-warning:active, .btn.active, .btn:active, .dropdown-menu>.disabled>a:focus, .dropdown-menu>.disabled>a:hover, .form-control, .navbar-toggle, .open>.btn-danger.dropdown-toggle, .open>.btn-default.dropdown-toggle, .open>.btn-info.dropdown-toggle, .open>.btn-primary.dropdown-toggle, .open>.btn-warning.dropdown-toggle {
+    background-image: none;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+input:not([type]), input[type="email" i], input[type="number" i], input[type="password" i], input[type="tel" i], input[type="url" i], input[type="text" i] {
+    padding: 1px 0px;
+}
+user agent stylesheet
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    -webkit-rtl-ordering: logical;
+    -webkit-user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+}
+user agent stylesheet
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+user agent stylesheet
+input, textarea, keygen, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+Inherited from body.ember-application
+body {
+    padding-top: 46px;
+    font-weight: 300;
+
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.428571429;
+    color: #545454;
+}
+Inherited from html.js.svg.wf-opensans-i3-active.wf-opensans-i4-active.wf-opensans-n4-active.wf-opensans-n3-active.wf-opensans-n6-active.wf-opensans-n7-active.wf-active
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+Pseudo ::before element
+*, :after, :before {
+    box-sizing: border-box;
+}
+Pseudo ::after element
+*, :after, :before {
+    box-sizing: border-box;
+}
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+kbd kbd, label {
+    font-weight: 700;
+}
+.img-responsive, .img-thumbnail, .table, label {
+    max-width: 100%;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+
+.form-group.required .control-label:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 8px;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+li{
+  list-style:none;
+}
+.btn-primary {
+    box-shadow: 0 2px 0 0 #1b5dab;
+}
+.btn {
+    border: none;
+    font-size: 18px;
+    border-radius: 3px;
+    padding: 10px 25px;
+}
+.breadcrumb a, .btn, .dropdown-menu>li>a, .main-footer .list-info a.link-email, .main-footer .list-info a:hover, .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    text-decoration: none;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #4A90E2;
+    border-color: #3483de;
+}
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 300;
+    text-align: center;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    white-space: nowrap;
+    line-height: 1.428571429;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.btn, .btn-danger.active, .btn-danger:active, .btn-default.active, .btn-default:active, .btn-info.active, .btn-info:active, .btn-primary.active, .btn-primary:active, .btn-warning.active, .btn-warning:active, .btn.active, .btn:active, .dropdown-menu>.disabled>a:focus, .dropdown-menu>.disabled>a:hover, .form-control, .navbar-toggle, .open>.btn-danger.dropdown-toggle, .open>.btn-default.dropdown-toggle, .open>.btn-info.dropdown-toggle, .open>.btn-primary.dropdown-toggle, .open>.btn-warning.dropdown-toggle {
+    background-image: none;
+}
+.btn, .btn-group, .btn-group-vertical, .caret, .checkbox-inline, .radio-inline, img {
+    vertical-align: middle;
+    margin-top: 30px;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button, select {
+    text-transform: none;
+}
+button {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+    padding: 1px 6px;
+}
+user agent stylesheet
+input[type="button" i], input[type="submit" i], input[type="reset" i], input[type="file" i]::-webkit-file-upload-button, button {
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonface;
+}
+user agent stylesheet
+input, textarea, keygen, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em 0em 0em 0em;
+    font: 13.3333px Arial;
+}
+
+button {
+    -webkit-appearance: button;
+}
+
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+Pseudo ::before element
+*, :after, :before {
+    box-sizing: border-box;
+}
+Pseudo ::after element
+*, :after, :before {
+    box-sizing: border-box;
+}
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+kbd kbd, label {
+    font-weight: 700;
+}
+.img-responsive, .img-thumbnail, .table, label {
+    max-width: 100%;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+user agent stylesheet
+label {
+    cursor: default;
+}
+Inherited from body.ember-application
+body {
+    padding-top: 46px;
+    font-weight: 300;
+}
+body {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    line-height: 1.428571429;
+    color: #545454;
+}
+Inherited from html.js.svg.wf-opensans-n3-active.wf-opensans-n4-active.wf-opensans-n6-active.wf-opensans-n7-active.wf-opensans-i3-active.wf-opensans-i4-active.wf-active
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+Pseudo ::before element
+*, :after, :before {
+    box-sizing: border-box;
+}
+Pseudo ::after element
+.form-group.required .control-label:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 8px;
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+</style>

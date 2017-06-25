@@ -1,0 +1,176 @@
+/*  CSS GENERALES */
+.sin-border {
+    border: 0px;
+}
+.sin-sombra {
+    box-shadow: 0 0px 0px #FFF;
+    -webkit-box-shadow: 0 0px 0px #FFF;
+}
+.sin-padding {
+    padding: 0px;
+}
+.margin-div {
+    margin: 5px 0;
+}
+.txt-danger {
+    color: #B92C28;
+}
+.txt-primary {
+    color: #238DC1;
+}
+.txt-naranja {
+    color: #FF8B4E;
+}
+.bg-naranja {
+    background-color: #FF8B4E;
+}
+.txt-right {
+    text-align: right;
+}
+.txt-center {
+    text-align: center;
+}
+.glyphicon img {
+    width: 15px;
+}
+
+.w100 {
+    width: 100%;
+}
+/*  CSS NAVBAR */
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand a {
+    width: 60px;
+    height: 70px;
+}
+.navbar-brand > img {
+    width: 60px;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    line-height: 40px;
+}
+.navbar-toggle {
+    margin: 18px 15px !important;
+    background: #FFF;
+}
+
+/* APP */
+html {
+    background-color: #FFF;
+}
+.contenido {
+    background: #FFF;
+    border: 0px solid #C4C4C4;
+    padding: 0px 0px 30px 0px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.icon_menu {
+    color: white;
+    font-size: 30px;
+    margin: 10px;
+}
+.icon_menu_footer {
+    color: rgb(124,125,125);
+    font-size: 20px;
+    margin: 10px;
+}
+.navbar {
+    margin-bottom: 0px;
+    background: rgb(231,231,231)
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: rgb(236,27,29);
+}
+.navbar-default .navbar-nav > li > a {
+    color: #333;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: rgb(236,27,29);
+    border-bottom: 3px solid rgb(236,27,29);
+    max-height: 70px;
+}
+.navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .open > a:hover {
+    border: 0px;
+}
+.container-fluid {
+    background-color: rgb(231,231,231);
+    border-color: #C4C4C4;
+}
+.footer_movil {
+    position: fixed;
+    bottom: 1px; width: 100%;
+    background:rgb(231,231,231);
+}
+.rojo, .rojo:hover {
+    color: #EB2022;
+}
+.panel-body {
+    padding: 5px 5px;
+}
+.panel-st > .panel-heading {
+    background-image: none;
+    background-repeat: repeat-x;
+}
+.panel-st > .panel-heading {
+    color: #FFF;
+    background-color: #EB2022;
+    border-color: #EB2022;
+}
+.panel-ul {
+    list-style-image: url(../images/bullet_movil.jpg);
+    padding: 0px 20px;
+}
+.btn-jumbo {
+    height: 70px;
+    line-height: 60px;
+    width: 100%;
+}
+.icon_panel_down {
+    float: right;
+    color: #FFF;
+}
+.panel-default {
+    border: 0px;
+}
+.panel-default > .panel-heading {
+    background-image: none;
+    background-repeat: repeat-x;
+}
+.panel-default .icon_panel_down {
+    color: #000;
+}
+.btn-group-vertical .dropdown-menu {
+    right: 0;
+    left: initial;
+}
+.btn-group-vertical .btn .caret {
+    margin: 8px;
+    float: right;
+}
+.txt-left {
+    text-align: left;
+}
+.icon_group {
+    float: right;
+    font-size: 19px;
+}
+.btn-group-vertical button.btn.btn-default.dropdown-toggle.txt-left {
+    border-radius: 0;
+    margin-bottom: 10px;
+    text-shadow: #FFF 0px 0px 0px;
+}
+.btn-group-vertical > .btn-group > .btn-default:focus, .btn-default:hover {
+    background-color: none;
+    background-position: 0px;
+}
+.btn-group-vertical > .btn-group > .info, .btn-group-vertical > .btn-group > .info:hover, .btn-group-vertical > .btn-group > .info:focus {
+    color: #fff;
+    background: #269ABC;
+    border-color: #1B6D85;
+}

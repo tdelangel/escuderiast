@@ -1,0 +1,93 @@
+  <div class="container contenido">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-lg-6">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="input-group">
+                        <input class="form-control" id="fechaInicio" placeholder="Fecha" />
+                        <div class="input-group-btn">
+                            <button type="button" onclick="$('#fechaInicio').datepicker('show')" class="btn btn-default">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="input-group">
+                        <input class="form-control" id="fechaFin" placeholder="Fecha" />
+                        <div class="input-group-btn">
+                            <button type="button" onclick="$('#fechaFin').datepicker('show')" class="btn btn-default">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-barcode"></span></button>
+                        </div>
+                        <input class="form-control" placeholder="#OR" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-lg-6">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <div class="form-group">
+                        <select class="form-control" title="Filtros">
+                            <option disabled="disabled" selected="selected">Filtros</option>
+                            <option>Opcion 1</option>
+                            <option>Opcion 2</option>
+                            <option>Opcion 3</option>
+                            <option>Opcion 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-lg-4">
+                    <button class="btn btn-warning" role="button">
+                        Buscar <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Mostrando 1 - 5 de 5 resultados de busqueda. <a href="#" class="txt-primary">[Exportar Excel]</a></p>
+            <p></p>
+            <!-- Array de datos -->
+
+            <table class="table">
+                <thead>
+                    <tr class="txt-primary">
+                        <th>OR#</th>
+                        <th>Marca Modelo</th>
+                        <th>Estatus</th>
+                        <th class="hide-sm" colspan="5">Inspección</th>
+                        <th class="hide-sm">Actualizado</th>
+                        <th class="hide-sm">Equipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                 {{#each model as |forma|}}
+                 <tr>
+                    <td>{{forma.cat_autos_placas}}</td>
+                    <td>{{forma.cat_autos_notas}}</td>
+                    <td>Aprobado</td>
+                    <td class="success hide-sm">5</td>
+                    <td class="warning hide-sm">0</td>
+                    <td class="danger hide-sm">1</td>
+                    <td class="icon hide-sm"><span class="glyphicon glyphicon-eye-open"></span></td>
+                    <td class="icon hide-sm"><span class="glyphicon glyphicon-bell"></span></td>
+                    <td class="hide-sm">31 de Enero</td>
+                    <td class="hide-sm">AA</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+

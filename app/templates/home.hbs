@@ -1,0 +1,45 @@
+<div class="main-wrapper">
+
+</div>
+<div class="main-wrapper">
+  <main class="container-fluid wrapper" role="main">
+    <div class="row">
+      <div class="col-md-4">
+        <!-- panel quicktools -->
+        <div class="panel panel-default ">
+          <header class="panel-heading">
+            <h5>Resultado </h5>                                                              
+          </header>    
+          <section class="panel-body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <a {{action 'createNewFormulario'}} class="new-media-btn">
+                    <i class="fa fa-file-text-o"></i>
+                    <p>Nuevo Formulario</p>
+                  </a>
+                </div>
+               <div class="col-md-6">
+                  <a {{action 'goToReports'}} class="new-media-btn">
+                    <i class="fa fa-file-text-o"></i>
+                    <p> Reportes</p>
+                  </a>
+                </div>
+                            {{#if isSelectedEstado}}
+                <div class="col-md-6">
+                  <a {{action 'goToUsers'}} class="new-media-btn">
+                    <i class="fa fa-users"></i>
+                    <p>Nuevos Usuarios</p>
+                  </a>
+                </div>  
+                {{/if}}                                       
+              </div>              
+            </div>                  
+          </section>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+</div>

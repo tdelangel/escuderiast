@@ -1,0 +1,44 @@
+ <main class="login-wrapper" role="main">
+  <section class="login-sec">
+   <div class="container" style="margin-top: 50px">
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Login</h3>
+          </div>
+          <div class="panel-body">
+            <div class="thumbnail sin-sombra sin-border">
+               <img src="assets/images/logo_escuderia.jpg" alt="logo_escuderia">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">@</span>
+              {{input type="text" class="form-control" id="loginUser" value=identification placeholder="usuario"}}
+            </div>
+            <div class="input-group">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default">
+                  <span class="glyphicon glyphicon-asterisk"></span>
+                </button>
+              </div>
+              {{input type="password" class="form-control" id="loginPassword" value=password placeholder="Contraseña"}}
+            </div>
+          </div>
+          <div class="panel-footer txt-center">
+            <button {{action 'authenticate'}} class="btn btn-large btn-success" type="button">Entrar</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+       <div class="alert alert-danger hidden col-md-10 col-md-push-1 clearfix" role="alert" style="margin-top:15px;display:table;">
+        <span class="fa fa-exclamation" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{controller.message}}
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+</main>

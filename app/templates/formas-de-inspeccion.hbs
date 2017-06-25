@@ -1,0 +1,200 @@
+<div class="main-wrapper">
+  <header class="topHeader">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h2> <i class="fa fa-angle-right"></i> Listado de Formularios</h2>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-fluid wrapper tramites-listado" role="main">
+    <div class="clearfix">
+      <div class="search-query pull-right">
+        {{input type="text" value=filter class="form-control search-small" placeholder="Buscar formularios..." }}
+        <button class="search-submit" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+
+      <button {{action 'createNewFormulario' }} class="btn btn-simple btn-lg pull-right right-margin ">Nuevo formulario</button>
+
+
+    </div>
+
+    <div class="clearfix">
+      <button {{action 'displayAdvSearch'}} class="btn-link pull-right adv-search-btn top-margin bottom-buffer">Búsqueda avanzada</button>
+    </div>
+
+
+    <div class="panel panel-white no-margin adv-search invisible">
+      <header class="panel-heading">
+        Búsqueda Avanzada
+      </header>
+      <section class="panel-body">
+        <div class="container-fluid clearfix">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="label-title">Nombre</label>
+                {{input type="text" value=namesSearch class="form-control" id="namesearch" placeholder="Introduce el nombre a buscar"}}
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="label-title">Trámite</label>
+                {{input type="text" value=tramiteSearch class="form-control" id="stepName" placeholder="Introduce el nombre del trámite"}}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="label-title">Tipo de pago</label>
+                {{select-2 key='id' content=pagos value=selectedTipoPago placeholder="Seleccionar Tipo Pago" optionDescriptionPath='id' optionLabelPath="tipo_pago" allowClear=true}}
+              </div>
+            </div>
+            {{#if isSelectedEstados}}
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="label-title">Estado</label>
+                {{select-2   key='id' content=estados value=selectedEstado placeholder="Seleccionar Estado" optionDescriptionPath='id' optionLabelPath='estado' allowClear=true}}
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="label-title">Dependencias</label>
+                {{select-2   key='id' content=dependencias value=selectedDependencia placeholder="Seleccionar Dependencia" optionDescriptionPath='id' optionLabelPath='name' allowClear=true}}
+              </div>
+            </div>
+            {{/if}}
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <section id="actionButtonLink" class="hidden">
+                <label for="" class="label-title">Enlace para botón de acción</label>
+                <input type="text" class="form-control" placeholder="Escribir enlace">
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {{#if txEvent}}
+    <section class="clearfix">
+      <div class="alert alert-success col-md-5" role="alert" style="margin: 14px auto; display: table;">
+        <span class="fa fa-check"></span>
+        <span class="sr-only">Éxito:</span>
+        <span style="padding-left:5px;">{{txMessage}}</span>
+      </div>
+    </section>
+    {{/if}}
+    <ul class="nav nav-pills" >
+      <li class="navStatus active" id="status-0" {{ action 'changeStatus' 0 this}}>
+        <a href="javascript:void(null)">Todos</a>
+      </li>
+      <li class="navStatus " id="status-3" {{ action 'changeStatus' 3 this}}>
+        <a href="javascript:void(null)">Publicados</a>
+      </li>
+      <li class="navStatus" id="status-2" {{ action 'changeStatus' 2 this}}>
+        <a href="javascript:void(null)">Borradores</a>
+      </li>
+      <li class="navStatus" id="status-1" {{ action 'changeStatus' 1 this}}>
+        <a href="javascript:void(null)">Incompletos</a>
+      </li>
+    </ul>
+
+    <br>
+    <table class="table table-hover table-striped table-order">
+      <colgroup>
+        <col class="col-xs-2">
+        <col class="col-xs-2">
+        <col class="col-xs-1">
+        <col class="col-xs-2">
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-1">
+        <col class="col-xs-2">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Trámite</th>
+          <th>Estatus de formulario</th>
+          <th>Estado / Dependencia</th>
+          <th>Tipo de pago</th>
+          <th>Número de respuestas</th>
+          <th>Vigencia</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each item in filteredContent}}
+        <tr>
+          <td>
+            <div>
+              <label>{{item._data.nombre}}</label>
+            </div>
+          </td>
+          <td>
+            <div>
+              <label>{{item._data.n_tramite.name}}</label>
+            </div>
+          </td>
+          <td>
+            <div>
+              <label>
+                {{status-formulario item._data.status}}
+              </label>
+            </div>
+          </td>
+          <td>
+            <div>
+              <label>{{item._data.n_estado.estado}}{{item._data.n_dependencia.name}}</label>
+            </div>
+          </td>
+          <td>
+            <div>
+              <label>{{item._data.n_tipo_pago.tipo_pago}}</label>
+            </div>
+          </td>
+          <td>
+            <div>
+              <label>{{item._data.total_respuestas}}</label>
+            </div>
+          </td>  <td>
+            <div>
+         
+              <label> {{formatted-date item._data.fecha_inicio item._data.fecha_fin}}</label>
+            </div>
+          </td>
+          <td align="left">
+            <button {{action 'goToPreview' item}} class="btn btn-default settings pull-center" type="button"><i class="fa fa-eye"></i></button>
+            <button {{action 'goToFormulario' item}} class="btn btn-default settings pull-center" type="button"><i class="fa fa-cog"></i></button>
+            
+            {{#if viewDelete}}
+            <button {{action 'deleteFormulario' item}} class="btn btn-default settings pull-center delete-row"   type="button"><i class="fa fa-trash"></i></button>
+          <!--  <button {{action 'activeFormulario' item}} class="btn btn-default settings pull-center delete-row"   type="button" {{class-active item._data.status}} ><i class= 'fa fa-check-square' ></i></button>-->
+            {{/if}}
+
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="10" style="text-align:center;">No hay formularios disponibles.</td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="8"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+
+  </main>
+</div>

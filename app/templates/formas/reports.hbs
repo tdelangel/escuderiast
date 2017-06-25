@@ -1,0 +1,54 @@
+<div class="main-wrapper">
+  <header class="topHeader">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h2> <i class="fa fa-angle-right"></i> Listado de Reportes</h2>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-fluid wrapper tramites-listado" role="main">
+    <br>
+    <table class="table table-hover table-striped table-order">
+      <colgroup>
+        <col class="col-xs-10">
+        <col class="col-xs-2">
+
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Nombre de Reporte</th>
+          <th>Descarga</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each item in reportes}}
+        <tr>
+          <td>
+            <div>
+              <label>{{item.url}}</label>
+            </div>
+          </td>
+          <td align="left">
+            <button  {{action 'goToReportes' item.url item.id_dependencia}}  class="btn btn-default settings pull-center" type="button"><i class="fa fa fa-angle-double-down "></i></button>
+
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="10" style="text-align:center;">No hay reportes disponibles.</td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="7"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+
+  </main>
+</div>

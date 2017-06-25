@@ -1,0 +1,7 @@
+{
+  "name": "escuderiast",
+  "dependencies": {
+    "bootstrap-datepicker": "^1.6.4",
+    "bootstrap": "^3.3.7"
+  }
+}
