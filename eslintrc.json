@@ -1,0 +1,7 @@
+   // ESLint configuration
+
+    // Control whether eslint is enabled for JavaScript files or not.
+    "eslint.enable": true,
+
+    // The eslint options object to provide args to the eslint command.
+    "eslint.options": {},
