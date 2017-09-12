@@ -20,6 +20,12 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-
+// for glyphicons
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff', {
+destDir: 'fonts'
+});
+app.import('bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2', {
+destDir: 'fonts'
+});
   return app.toTree();
 };

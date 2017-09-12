@@ -1,5 +1,5 @@
 {
-  "name": "escuderiast",
+  "name": "escuderiast_client",
   "version": "0.0.0",
   "description": "Small description for escuderiast goes here",
   "license": "MIT",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
-    "ember-cli": "2.13.1",
+    "ember-cli": "^2.12.0",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-babel": "^6.0.0",
     "ember-cli-bootstrap-datepicker": "^0.5.6",
@@ -44,7 +44,6 @@
   },
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "ember-cli": "^2.14.0"
+    "bootstrap-sass": "^3.3.7"
   }
 }

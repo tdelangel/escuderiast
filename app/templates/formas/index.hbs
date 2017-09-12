@@ -71,19 +71,22 @@
                     </tr>
                 </thead>
                 <tbody>
+       
                  {{#each model as |forma|}}
+
                  <tr>
-                    <td>{{forma.cat_autos_placas}}</td>
-                    <td>{{forma.cat_autos_notas}}</td>
-                    <td>Aprobado</td>
-                    <td class="success hide-sm">5</td>
-                    <td class="warning hide-sm">0</td>
-                    <td class="danger hide-sm">1</td>
+                    <td>{{forma.id}}</td>
+                    <td>{{forma.auto.cat_autos_marca}}/{{forma.auto.cat_autos_modelo}}</td>
+                    <td>{{forma.estatus_inspeccion}}</td>
+                    <td class="success hide-sm">{{forma.urgentes_count}}</td>
+                    <td class="warning hide-sm">{{forma.sugeridos_count}}</td>
+                    <td class="danger hide-sm">{{forma.sinreparacion_count}}</td>
                     <td class="icon hide-sm"><span class="glyphicon glyphicon-eye-open"></span></td>
                     <td class="icon hide-sm"><span class="glyphicon glyphicon-bell"></span></td>
-                    <td class="hide-sm">31 de Enero</td>
+                    <td class="hide-sm">{{forma.fecha_actualizacion}}</td>
                     <td class="hide-sm">AA</td>
                 </tr>
+               
                 {{/each}}
             </tbody>
         </table>

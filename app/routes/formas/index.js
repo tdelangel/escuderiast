@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
- 
-    return this.store.findAll('forma');
+let formas = this.store.findAll('forma');
+    return formas;
+
 }
 });

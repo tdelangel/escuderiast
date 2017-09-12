@@ -1,8 +1,12 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-	idcat_autos: DS.attr('string'),
-	cat_autos_placas: DS.attr('string'),
-	cat_autos_notas: DS.attr('string'),
-	cat_autos_anio: DS.attr('string')
+	estatus_inspeccion: DS.attr('string'),
+	notas_inspeccion: DS.attr('string'),
+	fecha_actualizacion: DS.attr('string'),
+	idcat_puntos_inspeccion: DS.attr('string'),
+	urgentes_count: DS.attr('string'),
+	sugeridos_count: DS.attr('string'),
+	sinreparacion_count: DS.attr('string'),
+	auto: DS.belongsTo('auto', { async: true })
 });
