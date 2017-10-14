@@ -5,6 +5,8 @@
          goToFormas: function() {
          	console.log('formas-de-inspeccion');
             this.transitionToRoute('/formas-de-inspeccion');
-         }
+         },goToUsers: function() {
+			this.transitionToRoute('/users');
+		}
       }
    });

@@ -22,7 +22,7 @@ var applicationController = Ember.Controller.extend({
 		logout: function() {
 			var controller = this;
 			var localItem = JSON.parse(localStorage[config.APP.LS]);
-			localStorage.setItem('href', config.APP.REST_WSPREFIX+"/"+"api/v2");
+			localStorage.setItem('href', config.APP.REST_WSPREFIX+"/"+"api/v1");
 			var token =  localItem.json.access_token;
 			console.log("apikey");
 			var query = 'token='+token;

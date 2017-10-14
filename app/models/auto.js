@@ -1,5 +1,5 @@
 export default DS.Model.extend({
   idcat_autos: DS.attr('String'),
-  cat_autos_marca: DS.attr('String'),
-  
+  anio: DS.attr('String'),
+  formas: DS.hasMany('forma',{ async: true})
 });

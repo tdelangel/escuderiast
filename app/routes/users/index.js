@@ -4,14 +4,13 @@ export default Ember.Route.extend({
 	
 	model: function() {
 		var params = {origen:true};
-		return this.store.find('user',params);
+		let user = this.store.findAll('user',params);
+    return user;
 		
 	},
 
 	setupController: function(controller, model) {
 		this._super(controller, model);
-		controller.set('estados',  this.store.findAll('estado'));
-		controller.set('dependencias',  this.store.findAll('dependency'));
 
 	},
 	actions: {

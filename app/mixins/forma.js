@@ -9,25 +9,8 @@ isActive: true,
 isNew: false,
 isComplete: true,
 isPublished:false,
-isSelectedEstados: false,
-isSelectedDependencias: false,
-selectedEstado: null,
-selectedTipoPago: null,
-selectedTramite: null,
-selectedDependencia: null,
-selectedTipoForm: null,
-jsonForm: null,
-isUpdated : false,
-isEncuesta : false,
-status:null,
-admin :false,
-id_form : null,
-viewTipoForm : false,
-editandoForm : false,
-tipoform : false,queryParams: ['page'],
-page: 1,
-offset: 0,
-loadFormulario: function() {
+
+loadForma: function() {
   console.log ('LoadForm--->');
   this.set('selectedEstado', null);
   this.set('selectedTipoPago', null);
@@ -39,7 +22,7 @@ loadFormulario: function() {
   this.set('finaldate', null);
   this.set('plantillas', null);
 
-//  console.log ("json create form --->"+ JSON.stringify(localItem.json));
+  console.log ("json create form --->"+ JSON.stringify(localItem.json));
 },
 activateSaveForm: function() {
  var controller = this;
@@ -503,10 +486,10 @@ if(data!==null && data!== undefined && flag === false && faltaName === false){
     "captcha":captcha
   }};
 //console.log(bodyForm);
-var parentController = controller.get('controllers.formularios/index');
+var parentController = controller.get('controllers.formas/index');
 Ember.$.ajax({
          //  url: config.ENV.APP.REST_WSPREFIX + ENV.APP.REST_WSSUFIXFORM,
-         url: config.APP.REST_WSPREFIX+"/"+config.APP.WSSUFIX+'/formularios/'+formulario.get('id'),
+         url: config.APP.REST_WSPREFIX+"/"+config.APP.WSSUFIX+'/formas/'+formulario.get('id'),
          type: 'PUT',
          dataType: 'json',
          contentType: 'application/json',
@@ -541,7 +524,7 @@ else{
   },2000);
 
   localStorage.setItem('JsonForm',"");
-  controller.transitionToRoute('/formularios');
+  controller.transitionToRoute('/formas');
 }
 
 
@@ -558,7 +541,7 @@ else{
   },5000);
 
   localStorage.setItem('JsonForm',"");
-  controller.transitionToRoute('/formularios');
+  controller.transitionToRoute('/formas');
 
 });
 }
@@ -807,7 +790,7 @@ if(data!==null && data!== undefined && data !== "" && flag === false && faltaNam
   var atributos =JSON.parse(data);
   var bodyForm = {"id_formulario":this.get("newFormulario").get('id'), "status": status , "atributos": atributos.atributos};
 
-  var parentController = controller.get('controllers.formularios/index');
+  var parentController = controller.get('controllers.formas/index');
   Ember.$.ajax({
        //url: config.ENV.APP.REST_WSPREFIX + ENV.APP.REST_WSSUFIXFORM,
        url:  config.APP.REST_WSPREFIX+"/"+config.APP.WSSUFIX+'/atributos',
@@ -821,7 +804,7 @@ if(data!==null && data!== undefined && data !== "" && flag === false && faltaNam
 
       var formUpdate = {"id":controller.get("newFormulario").get('id'), "status": status , "atributos": atributos.atributos, "formulario": controller.get("newFormulario")};
       Ember.$.ajax({
-       url: config.APP.REST_WSPREFIX+config.APP.WSSUFIX+'formularios/'+controller.get("newFormulario").get('id'),
+       url: config.APP.REST_WSPREFIX+config.APP.WSSUFIX+'formas/'+controller.get("newFormulario").get('id'),
        type: 'PUT',
        dataType: 'json',
        contentType: 'application/json',
@@ -835,7 +818,7 @@ if(data!==null && data!== undefined && data !== "" && flag === false && faltaNam
         controller.set('selectedTramite', null);
         controller.set('selectedTipoPago', null);
 
-        var parentController = controller.get('controllers.formularios/index');
+        var parentController = controller.get('controllers.formas/index');
         controller.set('nameform', null);
         controller.set('startdate', null);
         controller.set('finaldate', null);
@@ -850,7 +833,7 @@ if(data!==null && data!== undefined && data !== "" && flag === false && faltaNam
         },2000);
 
         localStorage.setItem('JsonForm',"");
-        controller.transitionToRoute('/formularios');
+        controller.transitionToRoute('/formas');
 
 
       });
@@ -876,7 +859,7 @@ if(data!==null && data!== undefined && data !== "" && flag === false && faltaNam
       },2000);
 
       localStorage.setItem('JsonForm',"");
-      controller.transitionToRoute('/formularios');
+      controller.transitionToRoute('/formas');
 
     }
 
@@ -893,7 +876,7 @@ if(data!==null && data!== undefined && data !== "" && flag === false && faltaNam
     },2000);
 
     localStorage.setItem('JsonForm',"");
-    controller.transitionToRoute('/formularios');
+    controller.transitionToRoute('/formas');
 
   });
 }
@@ -911,9 +894,9 @@ cancelyElim_Formulario: function() {
   this.set('isSaved', false);
   var fromId = Ember.$.trim(controller.get('id_form').replace(/"/g, ""));
 // alert(fromId);
-var parentController = this.get('controllers.formularios/index');
+var parentController = this.get('controllers.formas/index');
 Ember.$.ajax({
- url: config.APP.REST_WSPREFIX+config.APP.WSSUFIX+'formularios/'+fromId,
+ url: config.APP.REST_WSPREFIX+config.APP.WSSUFIX+'formas/'+fromId,
  type: 'DELETE',
  dataType: 'json',
  async:false
@@ -921,7 +904,7 @@ Ember.$.ajax({
 });
 parentController.set('txEvent',true);
 parentController.set('txMessage','Formulario cancelado');
-this.transitionToRoute('/formularios');
+this.transitionToRoute('/formas');
 setTimeout(function () {
   if(parentController!==null) {
     parentController.set('txEvent', false);
@@ -939,7 +922,7 @@ cancelFormulario: function() {
 
   this.set('isSaved', false);
 
-  var parentController = this.get('controllers.formularios/index');
+  var parentController = this.get('controllers.formas/index');
   parentController.set('txEvent',true);
   parentController.set('txMessage','Formulario cancelado');
   setTimeout(function () {
@@ -948,7 +931,7 @@ cancelFormulario: function() {
       parentController.set('txMessage', '');
     }
   },2000);
-  this.transitionToRoute('/formularios');
+  this.transitionToRoute('/formas');
 
   this.set('isUpdated',false);
   this.set('isSaved', false);
@@ -958,7 +941,7 @@ cancelFormulario: function() {
 
 },
 regresarFormulario: function() {
-  this.transitionToRoute('/formularios');
+  this.transitionToRoute('/formas');
 }
 }
 });

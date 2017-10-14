@@ -78,9 +78,9 @@ userValidation : function(){
     var id_usuario = {id_usuario:this.get('model').get("id")};
 
 
-    this.store.fetchById('formulario', id_usuario).then(function(formularios) {
-      if(formularios.toArray().length>0){
-        $.prompt("El usuario tiene formularios asignados, ¿Deseas continuar?", {
+    this.store.fetchById('formulario', id_usuario).then(function(formas) {
+      if(formas.toArray().length>0){
+        $.prompt("El usuario tiene formas asignados, ¿Deseas continuar?", {
           overlayspeed:'fast',
           promptspeed:'fast',
           title: "Usuario",
@@ -115,7 +115,7 @@ deleteUser : function(){
     var id_usuario = {id_usuario:this.get('model').get("id")};
 
     Ember.$.ajax({
-     url: config.APP.REST_WSPREFIX +"/"+ config.APP.WSSUFIX+'/formularios',
+     url: config.APP.REST_WSPREFIX +"/"+ config.APP.WSSUFIX+'/formas',
      type: 'DELETE',
      dataType: 'json',
      contentType: 'application/json',

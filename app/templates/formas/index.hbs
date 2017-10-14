@@ -4,8 +4,9 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-lg-4">
                     <div class="input-group">
-                        <input class="form-control" id="fechaInicio" placeholder="Fecha" />
-                        <div class="input-group-btn">
+                      
+                             {{input id="fechaInicio" type="text" value=dateInitial class="form-control search-small" placeholder=" Fecha Inicial" }}
+                       <div class="input-group-btn">
                             <button type="button" onclick="$('#fechaInicio').datepicker('show')" class="btn btn-default">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </button>
@@ -14,7 +15,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-4 col-lg-4">
                     <div class="input-group">
-                        <input class="form-control" id="fechaFin" placeholder="Fecha" />
+                      {{input type="text" value=dateFinal id="fechaFin" class="form-control search-small" placeholder=" Fecha final" }}
                         <div class="input-group-btn">
                             <button type="button" onclick="$('#fechaFin').datepicker('show')" class="btn btn-default">
                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -27,7 +28,7 @@
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-barcode"></span></button>
                         </div>
-                        <input class="form-control" placeholder="#OR" />
+                       {{input type="text" value=or class="form-control search-small" placeholder=" #OR" }}
                     </div>
                 </div>
             </div>
@@ -36,18 +37,17 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-4 col-lg-4">
                     <div class="form-group">
-                        <select class="form-control" title="Filtros">
-                            <option disabled="disabled" selected="selected">Filtros</option>
-                            <option>Opcion 1</option>
-                            <option>Opcion 2</option>
-                            <option>Opcion 3</option>
-                            <option>Opcion 4</option>
-                        </select>
+                         {{input type="text" value=filter class="form-control search-small" placeholder="Buscar ..." }}
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-4 col-lg-4">
+                <div class="col-xs-12 col-sm-2 col-lg-2">
                     <button class="btn btn-warning" role="button">
                         Buscar <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div> 
+                 <div class="col-xs-12 col-sm-2 col-lg-2">
+                        <button {{action 'createNewFormulario'}} class="btn btn-warning" role="button">
+                      <i class="glyphicon glyphicon-plus"></i>  Agregar Nueva forma 
                     </button>
                 </div>
             </div>
@@ -68,15 +68,16 @@
                         <th class="hide-sm" colspan="5">Inspección</th>
                         <th class="hide-sm">Actualizado</th>
                         <th class="hide-sm">Equipo</th>
+                        <th class="hide-sm">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
        
                  {{#each model as |forma|}}
-
+{{forma.tipo_auto.id}}
                  <tr>
                     <td>{{forma.id}}</td>
-                    <td>{{forma.auto.cat_autos_marca}}/{{forma.auto.cat_autos_modelo}}</td>
+                    <td>{{forma.autos.idcat_autos}}/{{forma.auto.placas}}</td>
                     <td>{{forma.estatus_inspeccion}}</td>
                     <td class="success hide-sm">{{forma.urgentes_count}}</td>
                     <td class="warning hide-sm">{{forma.sugeridos_count}}</td>
@@ -85,6 +86,10 @@
                     <td class="icon hide-sm"><span class="glyphicon glyphicon-bell"></span></td>
                     <td class="hide-sm">{{forma.fecha_actualizacion}}</td>
                     <td class="hide-sm">AA</td>
+                    <td class="hide-sm">  <button {{action 'goToFormulario' forma}} type="button" class="btn btn-default settings pull-center edit-row" type="button">
+                <i class="glyphicon glyphicon-edit"></i> Editar </button>
+             <button {{action 'goToPuntos' forma}} type="button" class="btn btn-default settings pull-center edit-row" type="button">
+                <i class="glyphicon glyphicon-eye-open"></i> Puntos de Inspeccion </button></td>
                 </tr>
                
                 {{/each}}

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import FormularioMixin from '../../mixins/forma';
+import FormaMixin from '../../mixins/forma';
 export default Ember.Controller.extend(FormaMixin,{
 	formAttributes: "[]"
 });

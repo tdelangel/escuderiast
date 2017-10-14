@@ -8,5 +8,5 @@ export default DS.Model.extend({
 	urgentes_count: DS.attr('string'),
 	sugeridos_count: DS.attr('string'),
 	sinreparacion_count: DS.attr('string'),
-	auto: DS.belongsTo('auto', { async: true })
+	 tipo_auto: DS.belongsTo('auto',{ async: true, inverse: 'formas'}),
 });

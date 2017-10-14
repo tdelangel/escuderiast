@@ -12,8 +12,9 @@ Router.map(function() {
   this.route('home');
    this.resource('formas', function() {
       this.route('new');
-      this.route('show', { path: '/show/:id_formulario' });
-      this.route('edit', { path: '/edit/:id_formulario' });
+      this.route('show', { path: '/show/:id_forma' });
+      this.route('edit', { path: '/edit/:id_forma' });
+      this.route('puntos', { path: '/puntos/:id_forma' });
     });
     this.route('users', function() {
     });

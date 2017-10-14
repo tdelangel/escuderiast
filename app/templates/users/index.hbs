@@ -1,0 +1,183 @@
+ <!-- Array de datos -->
+ <div class="container contenido">
+  <div class="col-xs-12 col-sm-6 col-lg-12">
+    <div class="row">
+        <div class="col-xs-12 col-sm-4 col-lg-4">
+            <div class="form-group">
+               {{input type="text" value=filter class="form-control search-small" placeholder="Buscar ..." }}
+           </div>
+       </div>
+       <div class="col-xs-12 col-sm-2 col-lg-2">
+        <button class="btn btn-warning" role="button">
+            Buscar <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </div> 
+    <div class="col-xs-12 col-sm-2 col-lg-2">
+        <button {{action 'newUserEventEnable'}}  class="btn btn-warning" role="button">
+          <i class="glyphicon glyphicon-plus"></i>  Agregar Nuevo Cliente
+      </button>
+  </div>
+</div>
+<!-- bloque para crear una nueva categoría -->
+{{#if newUserEnabled}}
+<section id="newUser" class="create-category vertical-buffer">
+  <h4 class="txt-naranja">INFORMACIÓN DE USUARIO O CLIENTE</h4>
+  <div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-user"></span>
+        </button>
+    </div>
+    {{#power-select
+      selected=destination
+      options=cities
+      onchange=(action "chooseDestination")
+      as |name|
+  }}
+  {{name}}
+  {{/power-select}}  
+</div>  
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-user"></span>
+        </button>
+    </div>
+    {{input value=newUserInstance.name name="nombre" class="form-control"  placeholder="Ingresar Nombre"}}  
+</div>
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-font"></span>
+        </button>
+    </div>
+    {{input value=newUserInstance.apaterno name="apaterno" class="form-control"  placeholder="Apellido paterno"}}  
+</div>
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-font"></span>
+        </button>
+    </div>
+    {{input value=newUserInstance.amaterno name="amaterno" class="form-control"  placeholder="Apellido materno"}}    
+</div>
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon">@</span>
+        </button>
+    </div>
+    {{input value=newUserInstance.user_tel  name="email" class="form-control"  placeholder="Telefono"}}  
+</div>      <div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon">@</span>
+        </button>
+    </div>
+    {{input value=newUserInstance.user_cel  name="email" class="form-control"  placeholder="Celular"}}  
+</div>      <div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon">@</span>
+        </button>
+    </div>
+    {{input value=newUserInstance.email  name="email" class="form-control"  placeholder="E-mail"}}  
+</div>     
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon">@</span>
+        </button>
+    </div>
+    {{input value=newUserInstance.emailConfirm  name="email" class="form-control"  placeholder="Confirmar e-mail "}}  
+</div>
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class=" glyphicon glyphicon-user">
+                
+            </span>
+        </button>
+    </div>
+    {{input value=newUserInstance.user name="user" class="form-control"  placeholder="Nombre de  usuario"}}   
+</div>  
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-lock">
+               
+            </span>
+        </button>
+    </div>
+    {{input value=newUserInstance.password name="password" class="form-control"  placeholder="Contraseña"}}   
+</div>
+<div class="input-group">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-th"></span>
+        </button>
+    </div>
+
+    {{input value=newUserInstance.vin name="vin" class="form-control"  placeholder="Vin"}}   
+    
+</div>
+
+<button {{action 'newUserEventDisable'}} type="button" id="cancelUser" class="btn btn-action add-cancel">Cancelar</button>
+<button {{action 'saveUser'}} type="button" id="addUser" class="btn btn-action publish ">Agregar usuario</button>
+
+
+
+
+{{#if onNewUserError}}
+<div class="alert alert-danger col-md-10 col-md-push-1" role="alert" style="margin: 14px auto; display: table;">
+    <span class="fa fa-exclamation" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{onNewUserError}}
+</div>
+{{/if}}
+{{#if isSendingEmail }}
+<div class="alert alert-success col-md-10 col-md-push-1" role="alert" style="margin: 14px auto; display: table;">
+    <span class="fa fa-check"></span>
+    <span class="sr-only">Éxito:</span>
+    <span style="padding-left:5px;">Enviando correo...</span>
+</div>
+{{/if}}
+
+</section>
+{{/if}}
+
+
+
+<table class="table">
+    <thead>
+        <tr class="txt-primary">
+            <th>id</th>
+            <th>Nombre</th>
+            <th>correo</th>
+            <th>rol</th>
+            <th>Acciones</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+     {{#each model as |users|}}
+     <tr>
+        <td>{{users.id}}</td>
+        <td>{{users.name}}</td>
+        <td>{{users.email}}</td>
+        <td >{{users.role}}</td>
+        <td > 
+         <button {{action 'deleteUserAction'}} class="btn btn-default settings pull-center delete-row" type="button">
+            <i class="glyphicon glyphicon-remove-circle"></i>
+        </button>
+        <button {{action 'editUserAction'}} type="button" class="btn btn-default settings pull-center edit-row" type="button">
+            <i class="  glyphicon glyphicon-edit"></i></button>
+        </td>
+    </tr>
+
+    {{/each}}
+</tbody>
+</table>
+</div>
+</div>
